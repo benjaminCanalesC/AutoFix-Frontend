@@ -27,8 +27,10 @@ const RepairsByEngineTypeSummary = () => {
                 <thead>
                     <tr>
                         <th>Tipo de Reparación</th>
-                        <th>Tipo de Motor</th>
-                        <th>Número de Vehículos</th>
+                        <th>Gasolina</th>
+                        <th>Diesel</th>
+                        <th>Hibrido</th>
+                        <th>Electrico</th>
                         <th>Monto Total</th>
                     </tr>
                 </thead>
@@ -36,8 +38,10 @@ const RepairsByEngineTypeSummary = () => {
                     {engineData.map((item, index) => (
                         <tr key={index}>
                             <td>{item.repairType}</td>
-                            <td>{item.engineType}</td>
-                            <td>{item.numberOfVehicles}</td>
+                            <td>{item.gasolineCount}</td>
+                            <td>{item.dieselCount}</td>
+                            <td>{item.hybridCount}</td>
+                            <td>{item.electricCount}</td>
                             <td>{formatCurrency(item.totalAmount)}</td>
                         </tr>
                     ))}

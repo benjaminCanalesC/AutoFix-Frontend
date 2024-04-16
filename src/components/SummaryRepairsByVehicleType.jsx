@@ -26,24 +26,30 @@ const RepairsByVehicleTypeSummary = () => {
         <Container style={{ marginTop: "4rem" }}>
             <Row className="mb-3">
                 <Col>
-                    <h1>Reporte de Resumen por Tipo de Vehiculo</h1>
+                    <h1>Reporte de Reparaciones por Tipo de Vehículo</h1>
                 </Col>
             </Row>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
                         <th>Tipo de Reparación</th>
-                        <th>Tipo de Vehículo</th>
-                        <th>Cantidad de Vehículos</th>
-                        <th>Costo Total</th>
+                        <th>Hatchback</th>
+                        <th>SUV</th>
+                        <th>Sedan</th>
+                        <th>Pickup</th>
+                        <th>Furgoneta</th>
+                        <th>Monto total</th>
                     </tr>
                 </thead>
                 <tbody>
                     {summaryData.map((item, index) => (
                         <tr key={index}>
                             <td>{item.repairType}</td>
-                            <td>{item.vehicleType}</td>
-                            <td>{item.vehicleCount}</td>
+                            <td>{item.hatchbackCount}</td>
+                            <td>{item.suvCount}</td>
+                            <td>{item.sedanCount}</td>
+                            <td>{item.pickupCount}</td>
+                            <td>{item.vanCount}</td>
                             <td>{formatCurrency(item.totalCost)}</td>
                         </tr>
                     ))}

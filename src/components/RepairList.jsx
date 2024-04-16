@@ -40,7 +40,7 @@ const RepairList = () => {
             repairService.remove(id)
                 .then(() => {
                     console.log("Reparación eliminada.");
-                    init(); // Refresh the list after deletion
+                    init();
                 })
                 .catch((error) => {
                     console.log("Error al intentar eliminar la reparación:", error);
