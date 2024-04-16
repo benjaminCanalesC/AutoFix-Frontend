@@ -8,6 +8,10 @@ import RepairList from './components/RepairList'
 import AddEditRepair from './components/AddEditRepair';
 import RepairDetails from './components/RepairDetails';
 import NotFound from './components/NotFound';
+import RepairReport from './components/SummaryRepairDetails'
+import RepairsByVehicleTypeSummary from './components/SummaryRepairsByVehicleType'
+import AverageTimeByBrandReport from './components/SummaryAverageTimeByBrand';
+import RepairsByEngineTypeSummary from './components/SummaryRepairsByEngineType';
 
 const App = () => {
   return (
@@ -23,6 +27,10 @@ const App = () => {
           <Route path="/repair/add" element={<AddEditRepair />} />
           <Route path="/repair/edit/:id" element={<AddEditRepair />} />
           <Route path="/repair/details/:id" element={<RepairDetails />} />
+          <Route path="/summaries/repairDetails" element={<RepairReport />} />
+          <Route path="/summaries/repairsByVehicleType" element={<RepairsByVehicleTypeSummary />} />
+          <Route path="/summaries/averageTimeByBrand" element={<AverageTimeByBrandReport />} />
+          <Route path="/summaries/repairsByEngineType" element={<RepairsByEngineTypeSummary />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

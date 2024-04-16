@@ -11,7 +11,7 @@ const AddEditVehicle = () => {
         fabricationYear: "",
         mileage: "",
         seats: "",
-        vehicleBrandId: "",  // Storing ID from the form
+        vehicleBrandId: "", 
         vehicleEngineId: "",
         vehicleTypeId: "",
     });
@@ -35,7 +35,7 @@ const AddEditVehicle = () => {
                     vehicleEngineId: vehicleEngine.id,
                     vehicleTypeId: vehicleType.id
                 });
-            }).catch(error => console.error("Error fetching vehicle details", error));
+            }).catch(error => console.error("Error al intentar acceder a los detalles del vehículo.", error));
         }
     }, [id]);
 
@@ -77,7 +77,7 @@ const AddEditVehicle = () => {
                             <Form.Label>Patente</Form.Label>
                             <FormControl
                                 type="text"
-                                placeholder="Agregar Patente"
+                                placeholder="Ej: ABCD12"
                                 name="plate"
                                 value={vehicle.plate}
                                 onChange={handleInputChange}
@@ -91,7 +91,7 @@ const AddEditVehicle = () => {
                             <Form.Label>Modelo</Form.Label>
                             <FormControl
                                 type="text"
-                                placeholder="Agregar Modelo"
+                                placeholder="Indique modelo"
                                 name="model"
                                 value={vehicle.model}
                                 onChange={handleInputChange}
@@ -149,7 +149,7 @@ const AddEditVehicle = () => {
                             <Form.Label>Año fabricación</Form.Label>
                             <FormControl
                                 type="text"
-                                placeholder="Agregar Año"
+                                placeholder="Indique año"
                                 name="fabricationYear"
                                 value={vehicle.fabricationYear}
                                 onChange={handleInputChange}
@@ -161,7 +161,7 @@ const AddEditVehicle = () => {
                             <Form.Label>Kilometraje</Form.Label>
                             <FormControl
                                 type="text"
-                                placeholder="Agregar Kilometraje"
+                                placeholder="Indique kilometraje"
                                 name="mileage"
                                 value={vehicle.mileage}
                                 onChange={handleInputChange}
@@ -175,7 +175,7 @@ const AddEditVehicle = () => {
                             <Form.Label>Asientos</Form.Label>
                             <FormControl
                                 type="text"
-                                placeholder="Agregar asientos"
+                                placeholder="Numero de asientos"
                                 name="seats"
                                 value={vehicle.seats}
                                 onChange={handleInputChange}

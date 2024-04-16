@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { Container, Form, Button, Row, Col, InputGroup, FormControl, FormGroup, FormLabel, FormCheck } from 'react-bootstrap';
-import { BsSave } from 'react-icons/bs'; // Using react-icons for the save icon
+import { Container, Form, Button, FormGroup, FormLabel, FormControl, FormCheck } from 'react-bootstrap';
+import { BsSave } from 'react-icons/bs';
 import repairService from '../services/repair.service';
 
 const AddEditRepair = () => {
@@ -36,9 +36,9 @@ const AddEditRepair = () => {
             vehicle: { plate: repair.vehiclePlate.toUpperCase() }
         };
 
-        const action = id ? repairService.update(id, repairPost) : repairService.create(repairPost);
+        const action = id ? repairService.update({ id: parseInt(id), ...repairPost })  : repairService.create(repairPost);
         action.then(response => {
-            navigate("/repair/list");
+            navigate("/repair/list");   
         }).catch(error => {
             console.error("Failed to save the repair.", error);
         });
@@ -67,7 +67,7 @@ const AddEditRepair = () => {
                 });
                 setTitleRepairForm("Editar Reparación");
             }).catch(error => {
-                console.error("Failed to load repair details.", error);
+                console.error("Error al intentar obtener los datos de la reparación.", error);
             });
         } else {
             setTitleRepairForm("Nueva Reparación");
@@ -110,33 +110,39 @@ const AddEditRepair = () => {
                         onChange={handleRepairChange}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Fecha y Hora de Salida</Form.Label>
-                    <Form.Control
-                        type="datetime-local"
-                        name="exitDateTime"
-                        value={repair.exitDateTime}
-                        onChange={handleRepairChange}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Fecha y Hora de Recogida</Form.Label>
-                    <Form.Control
-                        type="datetime-local"
-                        name="pickupDateTime"
-                        value={repair.pickupDateTime}
-                        onChange={handleRepairChange}
-                    />
-                </Form.Group>
-                <FormGroup className="mb-3">
-                    <FormCheck
-                        type="checkbox"
-                        label="Aplicar Bono de Descuento"
-                        checked={repair.bonusDiscount}
-                        onChange={handleRepairChange}
-                        name="bonusDiscount"
-                    />
-                </FormGroup>
+                {id && repair.entryDateTime && !repair.pickupDateTime && (
+                    <Form.Group className="mb-3">
+                        <Form.Label>Fecha y Hora de Salida</Form.Label>
+                        <Form.Control
+                            type="datetime-local"
+                            name="exitDateTime"
+                            value={repair.exitDateTime}
+                            onChange={handleRepairChange}
+                        />
+                    </Form.Group>
+                )}
+                {repair.exitDateTime && (
+                    <Form.Group className="mb-3">
+                        <Form.Label>Fecha y Hora de Recogida</Form.Label>
+                        <Form.Control
+                            type="datetime-local"
+                            name="pickupDateTime"
+                            value={repair.pickupDateTime}
+                            onChange={handleRepairChange}
+                        />
+                    </Form.Group>
+                )}
+                { !id && ( 
+                    <FormGroup className="mb-3">
+                        <FormCheck
+                            type="checkbox"
+                            label="Aplicar Bono de Descuento"
+                            checked={repair.bonusDiscount}
+                            onChange={handleRepairChange}
+                            name="bonusDiscount"
+                        />
+                    </FormGroup>
+                )}
                 <Button type="submit" variant="primary" className="me-2">
                     <BsSave className="me-2" />Guardar
                 </Button>

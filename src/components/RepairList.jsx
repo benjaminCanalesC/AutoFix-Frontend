@@ -68,6 +68,7 @@ const RepairList = () => {
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
+                        <th>Patente vehículo</th>
                         <th>Tipo de reparación</th>
                         <th>Costo de reparación</th>
                         <th>Fecha de Entrada</th>
@@ -79,6 +80,7 @@ const RepairList = () => {
                 <tbody>
                     {repairs.map((repair) => (
                         <tr key={repair.id}>
+                            <td>{repair.vehicle.plate}</td>
                             <td>{repair.repairType.repairType}</td>
                             <td>{formatCurrency(repair.repairCost)}</td>
                             <td>{formatDate(repair.entryDateTime)}</td>
