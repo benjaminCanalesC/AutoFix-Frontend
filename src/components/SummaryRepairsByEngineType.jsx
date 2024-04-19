@@ -42,7 +42,7 @@ const RepairsByEngineTypeSummary = () => {
                             <td>{item.dieselCount}</td>
                             <td>{item.hybridCount}</td>
                             <td>{item.electricCount}</td>
-                            <td>{formatCurrency(item.totalAmount)}</td>
+                            <td>{formatCurrency(item.totalCost)}</td>
                         </tr>
                     ))}
                 </tbody>
