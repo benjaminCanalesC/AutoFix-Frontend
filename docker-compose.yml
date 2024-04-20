@@ -1,6 +1,16 @@
 version: "3.8"
 
 services:
+  # PostgreSQL database service
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: autofix_system
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    networks:
+      - backend-network
+
   # Frontend services
   frontend1:
     image: bcanales/autofix-frontend:latest
@@ -19,17 +29,17 @@ services:
 
   # Backend services
   backend1:
-    image: autofix/autofix-backend:latest
+    image: bcanales/autofix-backend:latest
     networks:
       - backend-network
 
   backend2:
-    image: autofix/autofix-backend:latest
+    image: bcanales/autofix-backend:latest
     networks:
       - backend-network
 
   backend3:
-    image: autofix/autofix-backend:latest
+    image: bcanales/autofix-backend:latest
     networks:
       - backend-network
 
