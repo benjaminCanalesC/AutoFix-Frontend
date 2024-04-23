@@ -8,6 +8,8 @@ services:
       POSTGRES_DB: autofix_system
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
+    volumes:
+      - db_data:/var/lib/postgresql/data
     networks:
       - backend-network
 
@@ -61,7 +63,7 @@ services:
   nginx-backend:
     image: nginx:latest
     ports:
-      - "8090:3000"
+      - "8090:8090"
     volumes:
       - ./deployment/nginx-backend.conf:/etc/nginx/nginx.conf
     depends_on:
@@ -74,3 +76,6 @@ services:
 networks:
   frontend-network:
   backend-network:
+
+volumes:
+  db_data:
