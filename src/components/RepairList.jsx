@@ -88,13 +88,13 @@ const RepairList = () => {
                             <td>{formatDate(repair.pickupDateTime)}</td>
                             <td>
                                 <Button variant="info" onClick={() => handleEdit(repair.id)} className="me-2">
-                                    <BsPencilSquare /> Editar
+                                    Editar
                                 </Button>
                                 <Button variant="danger" onClick={() => handleDelete(repair.id)} className="me-2">
-                                    <BsTrash /> Eliminar
+                                    Eliminar
                                 </Button>
                                 <Button variant="secondary" onClick={() => handleDetails(repair.id)}>
-                                    <BsInfoCircle /> Detalles
+                                    Detalles
                                 </Button>
                             </td>
                         </tr>

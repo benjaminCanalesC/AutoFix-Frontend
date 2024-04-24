@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import vehicleService from "../services/vehicle.service";
 import { Button, Table, Container } from "react-bootstrap";
-import Navbar from "./Navbar";
+import { BsPencilSquare } from "react-icons/bs";
 
 const VehicleList = () => {
     const [vehicles, setVehicles] = useState([]);
@@ -49,7 +49,7 @@ const VehicleList = () => {
     return (
         <Container style={{ marginTop: '4rem', maxWidth: '100%' }}>
             <Link to="/vehicle/add" className="btn btn-primary mb-2">
-                Add Vehicle
+                <BsPencilSquare /> Añadir Vehículo
             </Link>
             <Table striped bordered hover size="sm">
                 <thead className="thead-dark">

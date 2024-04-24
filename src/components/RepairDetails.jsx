@@ -32,7 +32,7 @@ const RepairDetails = () => {
     };
 
     return (
-        <Card style={{ margin: '20px', marginTop: '6rem' }}>
+        <Card style={{ margin: '20px', marginTop: '6rem', flexDirection: 'row' }}>
             <Card.Body>
                 {repair ? (
                     <>
@@ -44,6 +44,21 @@ const RepairDetails = () => {
                             <ListGroup.Item><strong>Salida:</strong> {formatDate(repair.exitDateTime)}</ListGroup.Item>
                             <ListGroup.Item><strong>Recogida:</strong> {formatDate(repair.pickupDateTime)}</ListGroup.Item>
                             <ListGroup.Item><strong>Descuento Bonus:</strong> {repair.bonusDiscount ? "Sí" : "No"}</ListGroup.Item>
+                        </ListGroup>
+                    </>
+                ) : (
+                    <Card.Text>Cargando detalles de la reparación...</Card.Text>
+                )}
+            </Card.Body>
+            <Card.Body>
+                {repair ? (
+                    <>
+                        <Card.Title>Desglose costos</Card.Title>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item><strong>Costo Base Reparación:</strong> {formatCurrency(repair.baseRepairCost)}</ListGroup.Item>
+                            <ListGroup.Item><strong>Descuentos:</strong> {formatCurrency(repair.discount)}</ListGroup.Item>
+                            <ListGroup.Item><strong>Recargos:</strong> {formatCurrency(repair.surcharge)}</ListGroup.Item>
+                            <ListGroup.Item><strong>Iva:</strong> {formatCurrency(repair.iva)}</ListGroup.Item>
                             <ListGroup.Item><strong>Valor de la Reparación:</strong> {formatCurrency(repair.repairCost)}</ListGroup.Item>
                         </ListGroup>
                     </>
