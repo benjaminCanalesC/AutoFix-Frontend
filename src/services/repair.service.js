@@ -21,7 +21,15 @@ const remove = id => {
 }
 
 const getRepairTypes = () => {
-    return httpClient.get('/api/repairTypes/')
+    return httpClient.get('/api/repairTypes/');
 }
 
-export default { getAll, create, get, update, remove, getRepairTypes };
+const saveBrandDiscount = data => {
+    return httpClient.post("/api/brandDiscounts/", data);
+}
+
+const getBrandDiscounts = () => {
+    return httpClient.get("/api/brandDiscounts/");
+}
+
+export default { getAll, create, get, update, remove, getRepairTypes, saveBrandDiscount, getBrandDiscounts };

@@ -12,6 +12,8 @@ import RepairReport from './components/SummaryRepairDetails'
 import RepairsByVehicleTypeSummary from './components/SummaryRepairsByVehicleType'
 import AverageTimeByBrandReport from './components/SummaryAverageTimeByBrand';
 import RepairsByEngineTypeSummary from './components/SummaryRepairsByEngineType';
+import BrandDiscountList from './components/BrandDiscountList';
+import AddBrandDiscount from './components/AddBrandDiscount';
 
 const App = () => {
   return (
@@ -19,6 +21,7 @@ const App = () => {
       <div>
         <Navbar />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/vehicle/list" element={<VehicleList />} />
           <Route path="/vehicle/add" element={<AddEditVehicle />} />
@@ -27,6 +30,8 @@ const App = () => {
           <Route path="/repair/add" element={<AddEditRepair />} />
           <Route path="/repair/edit/:id" element={<AddEditRepair />} />
           <Route path="/repair/details/:id" element={<RepairDetails />} />
+          <Route path="/brandDiscount/list" element={<BrandDiscountList />} />
+          <Route path="/brandDiscount/add" element={<AddBrandDiscount />} />
           <Route path="/summaries/repairDetails" element={<RepairReport />} />
           <Route path="/summaries/repairsByVehicleType" element={<RepairsByVehicleTypeSummary />} />
           <Route path="/summaries/averageTimeByBrand" element={<AverageTimeByBrandReport />} />

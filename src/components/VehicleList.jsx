@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import vehicleService from "../services/vehicle.service";
-import { Button, Table, Container } from "react-bootstrap";
+import { Container, Table, Button, Form, Row, Col } from 'react-bootstrap';
 import { BsPencilSquare } from "react-icons/bs";
 
 const VehicleList = () => {
     const [vehicles, setVehicles] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     const init = () => {
@@ -46,11 +47,32 @@ const VehicleList = () => {
         navigate(`/vehicle/edit/${id}`);
     };
 
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value.toUpperCase());
+    };
+
+    const filteredVehicles = vehicles.filter((vehicle) =>
+        vehicle.plate.includes(searchTerm)
+    );
+
     return (
         <Container style={{ marginTop: '4rem', maxWidth: '100%' }}>
-            <Link to="/vehicle/add" className="btn btn-primary mb-2">
-                <BsPencilSquare /> Añadir Vehículo
-            </Link>
+            <h1>Vehículos</h1>
+            <Row className="mb-3">
+                <Col md={6}>
+                    <Link to="/vehicle/add" className="btn btn-primary mb-2">
+                        <BsPencilSquare /> Añadir Vehículo
+                    </Link>
+                </Col>
+                <Col md={6}>
+                    <Form.Control
+                        type="text"
+                        placeholder="Buscar por patente..."
+                        value={searchTerm}
+                        onChange={handleSearch}
+                    />
+                </Col>
+            </Row>
             <Table striped bordered hover size="sm">
                 <thead className="thead-dark">
                     <tr>
@@ -66,7 +88,7 @@ const VehicleList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {vehicles.map((vehicle) => (
+                    {filteredVehicles.map((vehicle) => (
                         <tr key={vehicle.id}>
                             <td>{vehicle.plate}</td>
                             <td>{vehicle.model}</td>

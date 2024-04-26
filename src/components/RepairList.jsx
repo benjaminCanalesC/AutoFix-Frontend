@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Table, Button, Row, Col } from "react-bootstrap";
+import { Container, Table, Button, Form, Row, Col } from 'react-bootstrap';
 import { BsPencilSquare, BsTrash, BsInfoCircle } from "react-icons/bs";
 import repairService from "../services/repair.service";
 
 const RepairList = () => {
     const [repairs, setRepairs] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
+    const init = () => {
+        repairService.getAll()
+            .then((response) => {
+                console.log("Listado de todas las reparaciones:", response.data);
+                setRepairs(response.data);
+            })
+            .catch((error) => {
+                console.log("Error al mostrar listado de reparaciones:", error);
+            });
+    };
+
     useEffect(() => {
-        const init = () => {
-            repairService.getAll()
-                .then((response) => {
-                    console.log("Listado de todas las reparaciones:", response.data);
-                    setRepairs(response.data);
-                })
-                .catch((error) => {
-                    console.log("Error al mostrar listado de reparaciones:", error);
-                });
-        };
         init();
     }, []);
 
@@ -56,13 +58,30 @@ const RepairList = () => {
         navigate(`/repair/details/${id}`);
     };
 
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value.toUpperCase());
+    };
+
+    const filteredRepairs = repairs.filter((repair) =>
+        repair.vehicle.plate.includes(searchTerm)
+    );
+
     return (
-        <Container style={{ marginTop: "4rem" }}>
+        <Container style={{ marginTop: '4rem', maxWidth: '100%' }}>
+            <h1>Reparaciones</h1>
             <Row className="mb-3">
                 <Col>
-                    <Link to="/repair/add" className="btn btn-primary">
+                    <Link to="/repair/add" className="btn btn-primary mb-2">
                         <BsPencilSquare /> Añadir Reparación
                     </Link>
+                </Col>
+                <Col md={6}>
+                    <Form.Control
+                        type="text"
+                        placeholder="Buscar por patente..."
+                        value={searchTerm}
+                        onChange={handleSearch}
+                    />
                 </Col>
             </Row>
             <Table striped bordered hover size="sm">
@@ -78,7 +97,7 @@ const RepairList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {repairs.map((repair) => (
+                    {filteredRepairs.map((repair) => (
                         <tr key={repair.id}>
                             <td>{repair.vehicle.plate}</td>
                             <td>{repair.repairType.repairType}</td>

@@ -36,9 +36,9 @@ const AddEditRepair = () => {
             vehicle: { plate: repair.vehiclePlate.toUpperCase() }
         };
 
-        const action = id ? repairService.update({ id: parseInt(id), ...repairPost })  : repairService.create(repairPost);
+        const action = id ? repairService.update({ id: parseInt(id), ...repairPost }) : repairService.create(repairPost);
         action.then(response => {
-            navigate("/repair/list");   
+            navigate("/repair/list");
         }).catch(error => {
             console.error("Failed to save the repair.", error);
         });
@@ -46,9 +46,10 @@ const AddEditRepair = () => {
 
     const handleRepairChange = (e) => {
         const { name, value, type, checked } = e.target;
+        const updatedValue = name === 'vehiclePlate' ? value.toUpperCase() : value;
         setRepair(prev => ({
             ...prev,
-            [name]: type === 'checkbox' ? checked : value
+            [name]: type === 'checkbox' ? checked : updatedValue
         }));
     };
 
@@ -87,6 +88,8 @@ const AddEditRepair = () => {
                         name="vehiclePlate"
                         value={repair.vehiclePlate}
                         onChange={handleRepairChange}
+                        maxLength="6"
+                        readOnly={!!id}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -96,6 +99,7 @@ const AddEditRepair = () => {
                         value={repair.repairTypeId}
                         onChange={handleRepairChange}
                     >
+                        <option value="">Reparaciones...</option>
                         {repairTypes.map((type) => (
                             <option key={type.id} value={type.id}>{type.repairType}</option>
                         ))}
@@ -110,7 +114,7 @@ const AddEditRepair = () => {
                         onChange={handleRepairChange}
                     />
                 </Form.Group>
-                {id && repair.entryDateTime && !repair.pickupDateTime && (
+                {id && repair.entryDateTime && (
                     <Form.Group className="mb-3">
                         <Form.Label>Fecha y Hora de Salida</Form.Label>
                         <Form.Control
@@ -132,7 +136,7 @@ const AddEditRepair = () => {
                         />
                     </Form.Group>
                 )}
-                { !id && ( 
+                {!id && (
                     <FormGroup className="mb-3">
                         <FormCheck
                             type="checkbox"
@@ -140,6 +144,7 @@ const AddEditRepair = () => {
                             checked={repair.bonusDiscount}
                             onChange={handleRepairChange}
                             name="bonusDiscount"
+                            className="form-check-inline form-switch"
                         />
                     </FormGroup>
                 )}

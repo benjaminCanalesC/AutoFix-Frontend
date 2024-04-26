@@ -11,7 +11,7 @@ const AddEditVehicle = () => {
         fabricationYear: "",
         mileage: "",
         seats: "",
-        vehicleBrandId: "", 
+        vehicleBrandId: "",
         vehicleEngineId: "",
         vehicleTypeId: "",
     });
@@ -26,6 +26,11 @@ const AddEditVehicle = () => {
         vehicleService.getBrands().then(response => setBrands(response.data));
         vehicleService.getEngines().then(response => setEngines(response.data));
         vehicleService.getTypes().then(response => setTypes(response.data));
+
+        console.log("Brands: " + brands);
+        console.log("Engines: " + engines);
+        console.log("Types: " + types);
+
         if (id) {
             vehicleService.get(id).then(response => {
                 const { vehicleBrand, vehicleEngine, vehicleType, ...vehicleBody } = response.data;
@@ -41,9 +46,10 @@ const AddEditVehicle = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        const updatedValue = name === 'plate' ? value.toUpperCase() : value;
         setVehicle(prev => ({
             ...prev,
-            [name]: value
+            [name]: updatedValue
         }));
     };
 
@@ -56,6 +62,10 @@ const AddEditVehicle = () => {
             vehicleEngine: { id: parseInt(vehicleEngineId) },
             vehicleType: { id: parseInt(vehicleTypeId) }
         };
+
+        console.log(payload);
+        console.log(payload.vehicleBrand.id);
+
         const serviceCall = id ? vehicleService.update({ id: parseInt(id), ...payload }) : vehicleService.create(payload);
         serviceCall
             .then(response => {
@@ -108,6 +118,7 @@ const AddEditVehicle = () => {
                                 value={vehicle.vehicleBrandId}
                                 onChange={handleInputChange}
                             >
+                                <option value="">Marcas...</option>
                                 {brands.map((option) => (
                                     <option key={option.id} value={option.id}>{option.brand}</option>
                                 ))}
@@ -122,6 +133,7 @@ const AddEditVehicle = () => {
                                 value={vehicle.vehicleEngineId}
                                 onChange={handleInputChange}
                             >
+                                <option value="">Motores...</option>
                                 {engines.map((option) => (
                                     <option key={option.id} value={option.id}>{option.engine}</option>
                                 ))}
@@ -136,6 +148,7 @@ const AddEditVehicle = () => {
                                 value={vehicle.vehicleTypeId}
                                 onChange={handleInputChange}
                             >
+                                <option value="">Tipos...</option>
                                 {types.map((option) => (
                                     <option key={option.id} value={option.id}>{option.type}</option>
                                 ))}

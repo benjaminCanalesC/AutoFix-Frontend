@@ -1,5 +1,6 @@
 import React from 'react';
 import { Offcanvas, ListGroup, Dropdown } from 'react-bootstrap';
+import { BsCashCoin } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 export default function Sidemenu({ open, toggleDrawer }) {
@@ -31,6 +32,12 @@ export default function Sidemenu({ open, toggleDrawer }) {
                         navigate("/repair/list");
                     }}>
                         <i className="fas fa-tools"></i> Reparaciones
+                    </ListGroup.Item>
+                    <ListGroup.Item as="li" action onClick={() => {
+                        handleClose();
+                        navigate("/brandDiscount/list");
+                    }}>
+                        <BsCashCoin /> Bonos por Marca
                     </ListGroup.Item>
                 </ListGroup>
                 <Dropdown as={ListGroup}>
