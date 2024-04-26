@@ -10,6 +10,10 @@ services:
       POSTGRES_PASSWORD: 1234
     volumes:
       - db_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    restart: always
+    ports:
+      - 5432:5432 
     networks:
       - backend-network
 
@@ -34,16 +38,22 @@ services:
     image: bcanales/autofix-backend:latest
     networks:
       - backend-network
+    depends_on:
+      - db
 
   backend2:
     image: bcanales/autofix-backend:latest
     networks:
       - backend-network
+    depends_on:
+      - db
 
   backend3:
     image: bcanales/autofix-backend:latest
     networks:
       - backend-network
+    depends_on:
+      - db
 
   # Nginx for frontend load balancing
   nginx-frontend:
