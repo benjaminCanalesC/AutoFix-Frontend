@@ -27,10 +27,6 @@ const AddEditVehicle = () => {
         vehicleService.getEngines().then(response => setEngines(response.data));
         vehicleService.getTypes().then(response => setTypes(response.data));
 
-        console.log("Brands: " + brands);
-        console.log("Engines: " + engines);
-        console.log("Types: " + types);
-
         if (id) {
             vehicleService.get(id).then(response => {
                 const { vehicleBrand, vehicleEngine, vehicleType, ...vehicleBody } = response.data;
@@ -62,9 +58,6 @@ const AddEditVehicle = () => {
             vehicleEngine: { id: parseInt(vehicleEngineId) },
             vehicleType: { id: parseInt(vehicleTypeId) }
         };
-
-        console.log(payload);
-        console.log(payload.vehicleBrand.id);
 
         const serviceCall = id ? vehicleService.update({ id: parseInt(id), ...payload }) : vehicleService.create(payload);
         serviceCall
