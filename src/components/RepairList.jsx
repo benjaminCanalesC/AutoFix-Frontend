@@ -106,9 +106,11 @@ const RepairList = () => {
                             <td>{formatDate(repair.exitDateTime)}</td>
                             <td>{formatDate(repair.pickupDateTime)}</td>
                             <td>
-                                <Button variant="info" onClick={() => handleEdit(repair.id)} className="me-2">
-                                    Editar
-                                </Button>
+                                {!repair.pickupDateTime && (
+                                    <Button variant="info" onClick={() => handleEdit(repair.id)} className="me-2">
+                                        Editar
+                                    </Button>
+                                )}
                                 <Button variant="danger" onClick={() => handleDelete(repair.id)} className="me-2">
                                     Eliminar
                                 </Button>
