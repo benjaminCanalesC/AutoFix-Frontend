@@ -18,7 +18,7 @@ export default function NavigationBar() {
                             <i className="fas fa-bars"></i>
                         </Nav.Link>
                     </Nav>
-                    <Navbar.Brand href="#home" className="mx-auto">
+                    <Navbar.Brand href="/home" className="mx-auto" style={{ transform: "translateX(-150px)" }}>
                         AutoFix: Tu vehículo en las mejores manos
                     </Navbar.Brand>
                 </Container>
