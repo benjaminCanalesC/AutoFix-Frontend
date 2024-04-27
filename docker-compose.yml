@@ -20,16 +20,25 @@ services:
   # Frontend services
   frontend1:
     image: bcanales/autofix-frontend:latest
+    deploy:
+      restart_policy:
+        condition: on-failure
     networks:
       - frontend-network
 
   frontend2:
     image: bcanales/autofix-frontend:latest
+    deploy:
+      restart_policy:
+        condition: on-failure
     networks:
       - frontend-network
 
   frontend3:
     image: bcanales/autofix-frontend:latest
+    deploy:
+      restart_policy:
+        condition: on-failure
     networks:
       - frontend-network
 
@@ -38,6 +47,9 @@ services:
     image: bcanales/autofix-backend:latest
     networks:
       - backend-network
+    deploy:
+      restart_policy:
+        condition: on-failure
     depends_on:
       - db
 
@@ -45,6 +57,9 @@ services:
     image: bcanales/autofix-backend:latest
     networks:
       - backend-network
+    deploy:
+      restart_policy:
+        condition: on-failure
     depends_on:
       - db
 
@@ -52,16 +67,20 @@ services:
     image: bcanales/autofix-backend:latest
     networks:
       - backend-network
+    deploy:
+      restart_policy:
+        condition: on-failure
     depends_on:
       - db
 
   # Nginx for frontend load balancing
   nginx-frontend:
     image: nginx:latest
+    restart: always
     ports:
       - "8070:80"
     volumes:
-      - ./deployment/nginx-frontend.conf:/etc/nginx/nginx.conf
+      - ./nginx-frontend.conf:/etc/nginx/nginx.conf
     depends_on:
       - frontend1
       - frontend2
@@ -72,10 +91,11 @@ services:
   # Nginx for backend load balancing
   nginx-backend:
     image: nginx:latest
+    restart: always
     ports:
       - "8090:8090"
     volumes:
-      - ./deployment/nginx-backend.conf:/etc/nginx/nginx.conf
+      - ./nginx-backend.conf:/etc/nginx/nginx.conf
     depends_on:
       - backend1
       - backend2
