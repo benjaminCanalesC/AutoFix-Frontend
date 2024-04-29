@@ -77,8 +77,8 @@ const VehicleList = () => {
                 <thead className="thead-dark">
                     <tr>
                         <th>Placa</th>
-                        <th>Modelo</th>
                         <th>Marca</th>
+                        <th>Modelo</th>
                         <th>Motor</th>
                         <th>Tipo</th>
                         <th>Año fabricación</th>
@@ -91,8 +91,8 @@ const VehicleList = () => {
                     {filteredVehicles.map((vehicle) => (
                         <tr key={vehicle.id}>
                             <td>{vehicle.plate}</td>
-                            <td>{vehicle.model}</td>
                             <td>{vehicle.vehicleBrand.brand}</td>
+                            <td>{vehicle.model}</td>
                             <td>{vehicle.vehicleEngine.engine}</td>
                             <td>{vehicle.vehicleType.type}</td>
                             <td>{vehicle.fabricationYear}</td>

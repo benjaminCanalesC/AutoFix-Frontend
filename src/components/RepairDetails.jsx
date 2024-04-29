@@ -39,6 +39,7 @@ const RepairDetails = () => {
                         <Card.Title>Detalles de la Reparación</Card.Title>
                         <ListGroup variant="flush">
                             <ListGroup.Item><strong>ID de Reparación:</strong> {repair.id}</ListGroup.Item>
+                            <ListGroup.Item><strong>Patente:</strong> {repair.vehicle.plate}</ListGroup.Item>
                             <ListGroup.Item><strong>Tipo de Reparación:</strong> {repair.repairType?.repairType}</ListGroup.Item>
                             <ListGroup.Item><strong>Entrada:</strong> {formatDate(repair.entryDateTime)}</ListGroup.Item>
                             <ListGroup.Item><strong>Salida:</strong> {formatDate(repair.exitDateTime)}</ListGroup.Item>
