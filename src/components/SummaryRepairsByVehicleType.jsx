@@ -9,10 +9,10 @@ const RepairsByVehicleTypeSummary = () => {
         const fetchData = async () => {
             try {
                 const response = await summaryService.repairsByVehicleType();
-                console.log("Fetched summary data: ", response.data);
+                console.log("Mostrando el reporte: ", response.data);
                 setSummaryData(response.data);
             } catch (error) {
-                console.error("Error fetching summary data: ", error);
+                console.error("Error al recuperar el reporte: ", error);
             }
         };
         fetchData();

@@ -40,7 +40,7 @@ const AddBrandDiscount = () => {
 
         repairService.saveBrandDiscount(payload)
             .then(() => navigate("/brandDiscount/list"))
-            .catch(error => console.error("Failed to save the record", error));
+            .catch(error => console.error("Error al guardar el bono.", error));
     };
 
     return (

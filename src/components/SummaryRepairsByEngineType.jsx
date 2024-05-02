@@ -8,11 +8,11 @@ const RepairsByEngineTypeSummary = () => {
     useEffect(() => {
         summaryService.repairsByEngineType()
             .then(response => {
-                console.log("Fetched repairs by engine type data:", response.data);
+                console.log("Mostrando el reporte:", response.data);
                 setEngineData(response.data);
             })
             .catch(error => {
-                console.error("Error fetching repairs by engine type data:", error);
+                console.error("Error al recuperar el reporte:", error);
             });
     }, []);
 

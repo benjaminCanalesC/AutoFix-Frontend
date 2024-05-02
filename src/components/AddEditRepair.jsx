@@ -23,7 +23,7 @@ const AddEditRepair = () => {
         repairService.getRepairTypes().then(response => {
             setRepairTypes(response.data);
         }).catch(error => {
-            console.error("Failed to fetch repair types", error);
+            console.error("Error al cargar los tipos de reparaciones.", error);
         });
     };
 
@@ -40,7 +40,7 @@ const AddEditRepair = () => {
         action.then(response => {
             navigate("/repair/list");
         }).catch(error => {
-            console.error("Failed to save the repair.", error);
+            console.error("Error al guardar la reparación.", error);
         });
     };
 

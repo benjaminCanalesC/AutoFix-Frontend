@@ -3,7 +3,7 @@ const Home = () => {
         <div>
             <h1>AutoFix</h1>
             <p>
-                AutoFix es una aplicación web.
+                AutoFix es una aplicación web desarrollada utilizando React y Spring Boot Java.
             </p>
         </div>
 

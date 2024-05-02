@@ -65,7 +65,7 @@ const AddEditVehicle = () => {
                 navigate("/vehicle/list");
             })
             .catch(error => {
-                console.error("Failed to save the vehicle", error);
+                console.error("Error al guardar el vehículo.", error);
             });
     };
 

@@ -8,11 +8,11 @@ const AverageTimeByBrandReport = () => {
     useEffect(() => {
         summaryService.averageTimeByBrandReport()
             .then(response => {
-                console.log("Fetched average time by brand data:", response.data);
+                console.log("Mostrando el reporte:", response.data);
                 setReportData(response.data);
             })
             .catch(error => {
-                console.error("Error fetching average time by brand data:", error);
+                console.error("Error al recuperar el reporte:", error);
             });
     }, []);
 

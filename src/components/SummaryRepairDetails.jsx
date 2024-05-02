@@ -8,11 +8,11 @@ const RepairReport = () => {
     useEffect(() => {
         summaryService.repairDetails()
             .then(response => {
-                console.log("Fetched repair details: ", response.data);
+                console.log("Mostrando el reporte: ", response.data);
                 setRepairs(response.data);
             })
             .catch(error => {
-                console.error("Error fetching repair details: ", error);
+                console.error("Error al recuperar el reporte: ", error);
             });
     }, []);
 

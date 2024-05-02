@@ -76,7 +76,7 @@ const VehicleList = () => {
             <Table striped bordered hover size="sm">
                 <thead className="thead-dark">
                     <tr>
-                        <th>Placa</th>
+                        <th>Patente</th>
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Motor</th>
