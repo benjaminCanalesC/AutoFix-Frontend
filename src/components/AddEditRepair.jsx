@@ -149,7 +149,7 @@ const AddEditRepair = () => {
                     </FormGroup>
                 )}
                 <Button type="submit" variant="primary" className="me-2">
-                    <BsSave className="me-2" />Guardar
+                    <BsSave className="me-2" />Guardar Reparación
                 </Button>
             </Form>
             <hr />
