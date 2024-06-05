@@ -80,7 +80,7 @@ services:
     ports:
       - "8070:80"
     volumes:
-      - ./nginx-frontend.conf:/etc/nginx/nginx.conf
+      - ./deployment/nginx-frontend.conf:/etc/nginx/nginx.conf
     depends_on:
       - frontend1
       - frontend2
@@ -95,7 +95,7 @@ services:
     ports:
       - "8090:8090"
     volumes:
-      - ./nginx-backend.conf:/etc/nginx/nginx.conf
+      - ./deployment/nginx-backend.conf:/etc/nginx/nginx.conf
     depends_on:
       - backend1
       - backend2
